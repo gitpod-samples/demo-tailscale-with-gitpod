@@ -1,1 +1,8 @@
+image:
+  file: .gitpod.Dockerfile
 
+tasks:
+  - init: |
+      echo init
+  - command: |
+      echo command
