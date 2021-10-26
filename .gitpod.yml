@@ -8,12 +8,14 @@ tasks:
         sleep 0.1
       done
       sudo slirp4netns --configure --mtu=65520 --disable-host-loopback $(cat /tmp/pid) tap0
-  - name: Tailscale
+  - name: tailscaled
     command: |
       sudo unshare --user --map-root-user --net
-      echo $$ > /tmp/pid
-  - name: test
+      echo "$$" > /tmp/pid
+      ip a
+      tailscaled --socket /tmp/tailscale.sock --state /tmp/tailscaled.state
+  - name: tailscale
       while ! test -f "/tmp/pid"; do
-        sleep 2
+        sleep 1
       done
       sudo nsenter -t $(cat /tmp/pid) -n tailscale --socket /tmp/tailscale.sock up
