@@ -1,33 +1,12 @@
 image:
-  file: .gitpod.Dockerfile
-
+  file: gitpod.Dockerfile
 tasks:
-  - name: slirp4netns
-    command: |
-      while ! test -f "/tmp/pid"; do
-        sleep 0.1
-      done
-      sudo slirp4netns --configure --mtu=65520 --disable-host-loopback $(cat /tmp/pid) tap0
   - name: tailscaled
     command: |
-      sudo unshare --user --map-root-user --net
-      echo "$$" > /tmp/pid
-
-      ip a
-
-      tailscaled --socket /tmp/tailscale.sock \
-                 --state /tmp/tailscaled.state \
-                 --socks5-server=localhost:1055 \
-                 --outbound-http-proxy-listen=localhost:1080
-                 --port 41641 \
-                 --tun=userspace-networking
-
+      sudo tailscaled
   - name: tailscale
-      while ! test -f "/tmp/pid"; do
-        sleep 1
-      done
-      sudo nsenter -t $(cat /tmp/pid) -n tailscale \
-                                          --socket /tmp/tailscale.sock up \
-                                          --hostname "gitpod-$GITPOD_WORKSPACE_ID" \
-                                          --authkey "${TAILSCALE_AUTHKEY}" \
-                                          --netfilter-mode off
+    command: |
+      sudo -E tailscale up --hostname "gitpod-$GITPOD_WORKSPACE_ID" \
+                           --authkey "${TAILSCALE_AUTHKEY}"
+
+experimentalNetwork: true
