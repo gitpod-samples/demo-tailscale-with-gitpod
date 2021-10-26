@@ -26,4 +26,8 @@ tasks:
       while ! test -f "/tmp/pid"; do
         sleep 1
       done
-      sudo nsenter -t $(cat /tmp/pid) -n tailscale --socket /tmp/tailscale.sock up --hostname "gitpod-$GITPOD_WORKSPACE_ID" --authkey "${TAILSCALE_AUTHKEY}" --netfilter-mode off
+      sudo nsenter -t $(cat /tmp/pid) -n tailscale \
+                                          --socket /tmp/tailscale.sock up \
+                                          --hostname "gitpod-$GITPOD_WORKSPACE_ID" \
+                                          --authkey "${TAILSCALE_AUTHKEY}" \
+                                          --netfilter-mode off
