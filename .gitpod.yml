@@ -6,7 +6,7 @@ tasks:
       sudo tailscaled
   - name: tailscale
     command: |
-      sudo -E tailscale up --hostname "gitpod-$GITPOD_WORKSPACE_ID" \
+      sudo -E tailscale up --hostname "gitpod-tailscale-demo" \
                            --authkey "${TAILSCALE_AUTHKEY}"
 
 experimentalNetwork: true
