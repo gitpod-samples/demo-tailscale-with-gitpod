@@ -2,7 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: |
-      echo init
-  - command: |
-      echo command
+  - name: Tailscale
+    command: |
+      sudo unshare --user --map-root-user --net
+      echo $$ > /tmp/pid
+      screen -dm sudo slirp4netns --configure --mtu=65520 --disable-host-loopback $(cat /tmp/pid) tap0
+      sudo nsenter -t $(cat /tmp/pid) -n tailscale --socket /tmp/tailscale.sock up
+      
