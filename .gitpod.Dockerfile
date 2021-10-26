@@ -5,7 +5,7 @@ RUN curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key
      && curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list \
      && apt-get update \
      && apt-get install -y tailscale \
-     && apt-get install -y screen
+     && apt-get install -y screen corkscrew
 
 USER gitpod
 
