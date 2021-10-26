@@ -12,10 +12,22 @@ tasks:
     command: |
       sudo unshare --user --map-root-user --net
       echo "$$" > /tmp/pid
+
       ip a
-      tailscaled --socket /tmp/tailscale.sock --state /tmp/tailscaled.state
+
+      tailscaled --socket /tmp/tailscale.sock \
+                 --state /tmp/tailscaled.state \
+                 --socks5-server=localhost:1055 \
+                 --outbound-http-proxy-listen=localhost:1080
+                 --port 41641 \
+                 --tun=userspace-networking
+
   - name: tailscale
       while ! test -f "/tmp/pid"; do
         sleep 1
       done
-      sudo nsenter -t $(cat /tmp/pid) -n tailscale --socket /tmp/tailscale.sock up
+      sudo nsenter -t $(cat /tmp/pid) -n tailscale up \
+                                            --socket /tmp/tailscale.sock \
+                                            --hostname=gitpod \
+                                            --authkey="${TAILSCALE_AUTHKEY}" \
+                                            --netfilter-mode=off
