@@ -1,19 +1,14 @@
-# A Tailscale template on Gitpod
+# Tailscale with Gitpod
 
-This is a [Tailscale](https://tailscale.com/) template configured for ephemeral development environments on [Gitpod](https://www.gitpod.io/).
+Ever wondered how to configure [Tailscale](https://tailscale.com/) with [Gitpod](https://www.gitpod.io/) to enable secure and ephemeral developer environments in the cloud? Here's how...
 
-## Integration
+## Demo
 
 Click the button below to start a new development environment:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/template-tailscale)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/demo-tailscale-with-gitpod)
 
-## Get Started With Your Own Project
+## Recommended Reading
 
-### A new project
-
-Click the above "Open in Gitpod" button to start a new workspace. Once you're ready to push your first code changes, Gitpod will guide you to fork this project so you own it.
-
-### An existing project
-
-To get started with Tailscale on Gitpod, copy the contents of this folder to your own project. To learn more, please see the [Getting Started](https://www.gitpod.io/docs/getting-started) documentation and our [documentation about Tailscale](https://www.gitpod.io/docs/configure/tailscale). 
+* [Access your tailnet from Gitpod](https://tailscale.com/kb/1161/gitpod/)
+* [Gitpod x Tailscale](https://www.gitpod.io/blog/tailscale)
