@@ -1,14 +1,27 @@
 # Tailscale with Gitpod
 
-Ever wondered how to configure [Tailscale](https://tailscale.com/) with [Gitpod](https://www.gitpod.io/) to enable secure and ephemeral developer environments in the cloud? Here's how...
+[Tailscale](https://tailscale.com/) allows [Gitpod](https://www.gitpod.io/) CDE workspaces to access private private resources such as databases, S3 buckets, local services, etc.
 
 ## Demo
 
-Click the button below to start a new development environment:
+### Tailscale setup: 
+
+* Signup for a new A [Tailscale account](https://login.tailscale.com/login)
+* Navigate to your [Tailscale Machines tab](https://login.tailscale.com/admin/machines) and copy the IP address of the example `hello` application
+
+![Tailscale hello service](docs/images/ping.png)
+
+* Verify that reaching the example Tailscale `hello` application via `ping` fails.
+
+### Gitpod workspace
+
+* Click the button below to start a new development environment:
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/demo-tailscale-with-gitpod)
 
-## Recommended Reading
-
-* [Access your tailnet from Gitpod](https://tailscale.com/kb/1161/gitpod/)
-* [Gitpod x Tailscale](https://www.gitpod.io/blog/tailscale)
+* Login to your Tailscale account when prompted from the Gitpod workspace terminal:
+```
+To authenticate, visit:
+        https://login.tailscale.com/a/XXXXXXXXXXXX
+```
+* Verify that reaching the example Tailscale `hello` application via `ping` succeeds.
